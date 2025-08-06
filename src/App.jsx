@@ -1,4 +1,5 @@
 import './App.css'
+import PokemonsCharacters from './components/PokemonsCharacters/PokemonsCharacters'
 import { SearchBar } from './components/SearchBar/SearchBar'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <header>
         <SearchBar />
       </header>
+      <PokemonsCharacters />
     </>
   )
 }
