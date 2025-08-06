@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: green;
+    /* background-color: rgb(217, 251, 252); */
     height: 13rem;
 }
 
@@ -28,15 +28,29 @@
     padding: 1rem;
     height: 5rem;
     width: 50rem;
+
     outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(87, 162, 248);
+    background-color: transparent;
+    color: white;
 }
 
+::placeholder {
+  color: white;
+}
+
+.searchInput:focus {
+    border-bottom: 2px solid rgb(87, 162, 248);
+}
 .buttonSearch {
     width: 7rem;
     height: 5rem;
-    background-color: rgb(0, 105, 224);
+    background-color: rgb(33, 137, 255);
     border: none;
     cursor: pointer;
+    margin-left: 1rem;
+    border-radius: 1rem;
 }
 
 .buttonSearch:hover { 
