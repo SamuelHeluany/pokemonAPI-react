@@ -28,7 +28,7 @@ export const SearchBar = () => {
     }
 
     try {
-      const response = await api.get(`/pokemon/${pokemonName.toLowerCase()}`)
+      const response = await api.get(`/pokemon/${pokemonName.replace(' ', '-').toLowerCase()}`)
       setPokemonInfo({
         name: response.data.name,
         attack: response.data.stats[1].base_stat,
@@ -36,7 +36,7 @@ export const SearchBar = () => {
         speed: response.data.stats[5].base_stat,
         hp: response.data.stats[0].base_stat,
         category: response.data.types[0].type.name,
-        image: response.data.sprites.other.dream_world.front_default,
+        image: response.data.sprites.other.home.front_default,
       })
     } catch (error) {
       alert('Nome do pokemon inexistente!', error)
