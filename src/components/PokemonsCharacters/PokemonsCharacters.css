@@ -43,5 +43,6 @@
 
 .pokemon-image img { 
     height: 60rem;
+    width: 60rem;
     margin-top: 13.5rem;
 }
