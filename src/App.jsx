@@ -4,7 +4,6 @@ import { SearchBar } from './components/SearchBar/SearchBar'
 
 function App() {
   
-
   return (
     <>
       <header>
