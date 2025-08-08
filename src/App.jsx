@@ -10,7 +10,6 @@ function App() {
       <header>
         <SearchBar />
       </header>
-      <PokemonsCharacters />
     </>
   )
 }

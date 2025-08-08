@@ -7,11 +7,8 @@ import Speed from '../../assets/speed.svg'
 import Hp from '../../assets/hp.svg'
 
 
+const PokemonsCharacters = ( {} ) => {
 
-
-
-
-const PokemonsCharacters = () => {
   return (
       <div className="pokemon">
           <div className="pokemon-stats">
