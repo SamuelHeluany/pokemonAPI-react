@@ -2,7 +2,7 @@ import './SearchBar.css'
 import api from '../../services/api'
 import Logo from '../../assets/Pokelogoo.png'
 import Search from '../../assets/Search.svg'
-import useState from 'react'
+import { useState } from 'react'
 import PokemonsCharacters from '../PokemonsCharacters/PokemonsCharacters'
 
 export const SearchBar = () => {
