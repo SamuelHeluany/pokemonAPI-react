@@ -2,7 +2,7 @@ import './SearchBar.css'
 import api from '../../services/api'
 import Logo from '../../assets/Pokelogoo.png'
 import Search from '../../assets/Search.svg'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import PokemonsCharacters from '../PokemonsCharacters/PokemonsCharacters'
 
 export const SearchBar = () => {
@@ -13,12 +13,12 @@ export const SearchBar = () => {
     defense: '',
     speed: '',
     hp: '',
-    category: ''
+    category: '',
+    image: ''
   })
 
-  const handleInputName = (e) => {
+  const handlePokemonName = (e) => {
     setPokemonName(e.target.value)
-    console.log(pokemonName)
   }
 
   const searchPokemon = async () => {
@@ -35,9 +35,8 @@ export const SearchBar = () => {
       defense: response.data.stats[2].base_stat,
       speed: response.data.stats[5].base_stat,
       hp: response.data.stats[0].base_stat,
-      category: response.data.types[0].type.name
-
-      
+      category: response.data.types[0].type.name,
+      image: response.data.sprites.other.dream_world.front_default,
     })
     console.log(pokemonInfo)
     } catch (error) {
@@ -59,13 +58,26 @@ export const SearchBar = () => {
         className='searchInput' 
         placeholder='Digite o nome do pokemon'
         value={pokemonName}
-        onChange={handleInputName}/>
+        onChange={handlePokemonName}
+        />
         <button className='buttonSearch' onClick={searchPokemon}>
             <img src={Search} />
         </button>
         </div>    
     </div>
-    <PokemonsCharacters  />
+    {pokemonInfo.name ? (<PokemonsCharacters  
+    name={pokemonInfo.name}
+    attack={pokemonInfo.attack}
+    defense={pokemonInfo.defense}
+    speed={pokemonInfo.speed}
+    hp={pokemonInfo.hp}
+    category={pokemonInfo.category}
+    image={pokemonInfo.image}
+    />)
+  :
+  (<></>)
+  }
+    
     </>
   )
 }
