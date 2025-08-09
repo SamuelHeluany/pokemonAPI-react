@@ -3,12 +3,10 @@ import { Pokemons } from './components/Pokemons/Pokemons'
 
 
 function App() {
-  
+
   return (
     <>
-      <header>
-        <Pokemons />
-      </header>
+      <Pokemons />
     </>
   )
 }

@@ -1,8 +1,12 @@
+import './PokemonsGrid.CSS'
+import Logo from '../../assets/pokelogoo.png'
 
 const PokemonsGrid = () => {
   return (
     <div className="container">
-        <h1>teste</h1>
+        <div className="pokemonCard">
+            <img src={Logo}/>
+        </div>
     </div>
   )
 }
