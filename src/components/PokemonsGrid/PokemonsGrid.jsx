@@ -1,12 +1,28 @@
 import './PokemonsGrid.CSS'
+import api from '../../services/api'
 import Logo from '../../assets/pokelogoo.png'
 import Category from '../../assets/category.svg'
 import Attack from '../../assets/sword.svg'
 import Shield from '../../assets/shield.svg'
 import Speed from '../../assets/speed.svg'
 import Hp from '../../assets/hp.svg'
+import { useState } from 'react'
 
 const PokemonsGrid = () => {
+    const [pokeInfosCard, setPokeInfoCard] = useState({
+    name: '',
+    attack: '',
+    defense: '',
+    speed: '',
+    hp: '',
+    category: '',
+    image: ''
+    })
+
+    const pokeCardDetails = async () => {
+        const result = api.get('')
+
+    }
     return (
         <div className="container">
             <div className="pokemonList">
