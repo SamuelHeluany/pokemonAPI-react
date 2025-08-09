@@ -1,11 +1,12 @@
-import './SearchBar.css'
+import './Pokemons.css'
 import api from '../../services/api'
 import Logo from '../../assets/Pokelogoo.png'
 import Search from '../../assets/Search.svg'
 import { useState } from 'react'
 import PokemonsCharacters from '../PokemonsCharacters/PokemonsCharacters'
+import PokemonsGrid from '../PokemonsGrid/PokemonsGrid'
 
-export const SearchBar = () => {
+export const Pokemons = () => {
   const [pokemonName, setPokemonName] = useState('')
   const [pokemonInfo, setPokemonInfo] = useState({
     name: '',
@@ -74,7 +75,7 @@ export const SearchBar = () => {
         image={pokemonInfo.image}
       />)
         :
-        (<></>)
+        (<PokemonsGrid />)
       }
 
     </>

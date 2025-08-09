@@ -1,12 +1,13 @@
 import './App.css'
-import { SearchBar } from './components/SearchBar/SearchBar'
+import { Pokemons } from './components/Pokemons/Pokemons'
+
 
 function App() {
   
   return (
     <>
       <header>
-        <SearchBar />
+        <Pokemons />
       </header>
     </>
   )
