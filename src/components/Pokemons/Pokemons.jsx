@@ -75,14 +75,7 @@ export const Pokemons = () => {
         image={pokemonInfo.image}
       />)
         :
-        (<PokemonsGrid
-          name={pokemonInfo.name}
-          attack={pokemonInfo.attack}
-          defense={pokemonInfo.defense}
-          speed={pokemonInfo.speed}
-          hp={pokemonInfo.hp}
-          category={pokemonInfo.category}
-          image={pokemonInfo.image} />)
+        (<PokemonsGrid />)
       }
 
     </>
