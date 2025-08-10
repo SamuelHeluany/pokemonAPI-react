@@ -1,6 +1,5 @@
 import './PokemonsGrid.CSS'
 import api from '../../services/api'
-import Logo from '../../assets/pokelogoo.png'
 import Category from '../../assets/category.svg'
 import Attack from '../../assets/sword.svg'
 import Shield from '../../assets/shield.svg'
@@ -8,51 +7,56 @@ import Speed from '../../assets/speed.svg'
 import Hp from '../../assets/hp.svg'
 import { useEffect, useState } from 'react'
 
-const PokemonsGrid = ({ pokemonUrl }) => {
-    const [pokeInfoCard, setPokeInfoCard] = useState({
-        name: '',
-        attack: '',
-        defense: '',
-        speed: '',
-        hp: '',
-        category: '',
-        image: ''
-    })
-
-    const pokeCardDetails = async () => {
-        console.log('URL chamada:', pokemonUrl)
-        const result = await api.get(pokemonUrl)
-        setPokeInfoCard({
-            name: result.data.name,
-            attack: result.data.stats.base_stat,
-            defense: result.data.stats.base_stat,
-            speed: result.data.stats.base_stat,
-            hp: result.data.stats.base_stat,
-            category: result.data.types.type.name,
-            image: result.data.sprites.other.home.front_default,
-        })
-        console.log(result.data)
-    }
-
+const PokemonsGrid = () => {
+    const [pokeInfoCard, setPokeInfoCard] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        pokeCardDetails()
+        const fetchPokemons = async () => {
+            try {
+                const res = await api.get('pokemon?limit=21')
+                const list = res.data.results
+
+                const details = await Promise.all(
+                    list.map((pokemon) => api.get(pokemon.url))
+                )
+                const pokemonsData = details.map(({ data }) => ({
+                    name: data.name,
+                    hp: data.stats.find(stat => stat.stat.name === 'hp')?.base_stat ?? 0,
+                    attack: data.stats.find(stat => stat.stat.name === 'attack')?.base_stat ?? 0,
+                    defense: data.stats.find(stat => stat.stat.name === 'defense')?.base_stat ?? 0,
+                    speed: data.stats.find(stat => stat.stat.name === 'speed')?.base_stat ?? 0,
+                    category: data.types[0]?.type?.name ?? 'Unknown',
+                    image: data.sprites.other['official-artwork'].front_default,
+                }))
+
+                setPokeInfoCard(pokemonsData)
+                setLoading(false)
+            } catch (error) {
+                alert('Erro ao buscar pokemon:', error)
+                setLoading(false)
+            }
+        }
+
+        fetchPokemons()
     }, [])
 
     return (
         <div className="container">
             <div className="pokemonList">
-                <div className="pokemonCard">
-                    <ul>
-                        <li><p className='name'>{pokeInfoCard.name}</p></li>
-                        <li> <img src={Logo} /></li>
-                        <li><p><img src={Attack} />Attack: 50</p></li>
-                        <li><p><img src={Shield} />Defesa: 50</p></li>
-                        <li><p><img src={Speed} />Velocidade: 50</p></li>
-                        <li><p><img src={Hp} />HP: 50</p></li>
-                        <li><p><img src={Category} />Categoria: Fantasma</p></li>
-                    </ul>
-                </div>
+                {pokeInfoCard.map((pokemon, idx) => (
+                    <div className="pokemonCard" key={idx}>
+                        <ul>
+                            <li><p className='name'>{pokemon.name}</p></li>
+                            <li> <img src={pokemon.image} /></li>
+                            <li><p><img src={Attack} />Ataque: {pokemon.attack}</p></li>
+                            <li><p><img src={Shield} />Defesa: {pokemon.defense}</p></li>
+                            <li><p><img src={Speed} />Velocidade: {pokemon.speed}</p></li>
+                            <li><p><img src={Hp} />HP: {pokemon.hp}</p></li>
+                            <li><p><img src={Category} />Categoria: {pokemon.category}</p></li>
+                        </ul>
+                    </div>
+                ))}
             </div>
         </div>
 
