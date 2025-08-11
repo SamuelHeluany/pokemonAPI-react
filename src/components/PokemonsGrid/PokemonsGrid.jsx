@@ -62,7 +62,7 @@ const PokemonsGrid = () => {
                 </div>
             </div>
             <div className="buttonMorePoke">
-                <button onClick={morePokemons}>TESTE</button>
+                <button onClick={morePokemons}>Mostrar mais pokemons</button>
             </div>
 
         </>

@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: center;
-    width: 100%;
+    min-width: 50rem;
     margin-top: 7rem;
 }
 
@@ -9,7 +9,7 @@
     display: grid;
     justify-content: center;
     grid-template-columns: 22rem 22rem 22rem 22rem 22rem 22rem 22rem;
-    width: 150rem;
+    min-width: 50rem;
 }
 
 .pokemonCard {
@@ -58,4 +58,28 @@
 .pokemonCard img {
     width: 20rem;
     height: 20rem;
+}
+
+.buttonMorePoke {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8rem;
+}
+
+.buttonMorePoke button {
+    height: 5rem;
+    width: 25rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: rgb(62, 74, 107);
+    color: white;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.buttonMorePoke button:hover {
+    background-color: rgb(59, 68, 88);
 }
