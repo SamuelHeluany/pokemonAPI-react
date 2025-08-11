@@ -37,7 +37,7 @@ export const Pokemons = () => {
         speed: response.data.stats[5].base_stat,
         hp: response.data.stats[0].base_stat,
         category: response.data.types[0].type.name,
-        image: response.data.sprites.other.home.front_default,
+        image: response.data.sprites.other['official-artwork'].front_default,
       })
     } catch (error) {
       alert('Nome do pokemon inexistente!', error)
