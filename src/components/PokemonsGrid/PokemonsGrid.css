@@ -6,10 +6,13 @@
 }
 
 .pokemonList {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    grid-template-columns: 22rem 22rem 22rem 22rem 22rem 22rem 22rem;
-    min-width: 50rem;
+    margin: 2rem;
+    gap: 1rem;
+    /* grid-template-columns: 22rem 22rem 22rem 22rem 22rem 22rem 22rem; */
+
 }
 
 .pokemonCard {
@@ -26,6 +29,7 @@
 .pokemonCard ul {
     list-style: none;
 }
+
 .pokemonCard ul li .name {
     font-size: 1.3rem;
     display: flex;
@@ -82,4 +86,12 @@
 
 .buttonMorePoke button:hover {
     background-color: rgb(59, 68, 88);
+}
+
+@media (max-width: 768px) {
+    .pokemonList {
+        display: flex;
+        flex-direction: column;
+        /* Muda a direção do flexbox */
+    }
 }

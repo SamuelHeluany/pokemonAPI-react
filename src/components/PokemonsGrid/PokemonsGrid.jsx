@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 
 const PokemonsGrid = () => {
     const [pokeInfoCard, setPokeInfoCard] = useState([])
-    const [limit, setLimit] = useState(14)
+    const [limit, setLimit] = useState(16)
 
     useEffect(() => {
         const fetchPokemons = async () => {
@@ -39,7 +39,7 @@ const PokemonsGrid = () => {
     }, [limit])
 
     const morePokemons = () => {
-        setLimit(limit + 14)
+        setLimit(limit + 16)
     }
 
     return (
