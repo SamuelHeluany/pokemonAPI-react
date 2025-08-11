@@ -9,12 +9,12 @@ import { useEffect, useState } from 'react'
 
 const PokemonsGrid = () => {
     const [pokeInfoCard, setPokeInfoCard] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [limit, setLimit] = useState(14)
 
     useEffect(() => {
         const fetchPokemons = async () => {
             try {
-                const res = await api.get('pokemon?limit=21')
+                const res = await api.get(`pokemon?limit=` + limit)
                 const list = res.data.results
 
                 const details = await Promise.all(
@@ -31,35 +31,41 @@ const PokemonsGrid = () => {
                 }))
 
                 setPokeInfoCard(pokemonsData)
-                setLoading(false)
             } catch (error) {
                 alert('Erro ao buscar pokemon:', error)
-                setLoading(false)
             }
         }
-
         fetchPokemons()
-    }, [])
+    }, [limit])
+
+    const morePokemons = () => {
+        setLimit(limit + 14)
+    }
 
     return (
-        <div className="container">
-            <div className="pokemonList">
-                {pokeInfoCard.map((pokemon, idx) => (
-                    <div className="pokemonCard" key={idx}>
-                        <ul>
-                            <li><p className='name'>{pokemon.name}</p></li>
-                            <li> <img src={pokemon.image} /></li>
-                            <li><p><img src={Attack} />Ataque: {pokemon.attack}</p></li>
-                            <li><p><img src={Shield} />Defesa: {pokemon.defense}</p></li>
-                            <li><p><img src={Speed} />Velocidade: {pokemon.speed}</p></li>
-                            <li><p><img src={Hp} />HP: {pokemon.hp}</p></li>
-                            <li><p><img src={Category} />Categoria: {pokemon.category}</p></li>
-                        </ul>
-                    </div>
-                ))}
+        <>
+            <div className="container">
+                <div className="pokemonList">
+                    {pokeInfoCard.map((pokemon, idx) => (
+                        <div className="pokemonCard" key={idx}>
+                            <ul>
+                                <li><p className='name'>{pokemon.name}</p></li>
+                                <li> <img src={pokemon.image} /></li>
+                                <li><p><img src={Attack} />Ataque: {pokemon.attack}</p></li>
+                                <li><p><img src={Shield} />Defesa: {pokemon.defense}</p></li>
+                                <li><p><img src={Speed} />Velocidade: {pokemon.speed}</p></li>
+                                <li><p><img src={Hp} />HP: {pokemon.hp}</p></li>
+                                <li><p><img src={Category} />Categoria: {pokemon.category}</p></li>
+                            </ul>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
+            <div className="buttonMorePoke">
+                <button onClick={morePokemons}>TESTE</button>
+            </div>
 
+        </>
     )
 }
 
