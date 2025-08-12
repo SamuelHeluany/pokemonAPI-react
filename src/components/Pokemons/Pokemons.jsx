@@ -6,6 +6,7 @@ import { useState } from 'react'
 import PokemonsCharacters from '../PokemonsCharacters/PokemonsCharacters'
 import PokemonsGrid from '../PokemonsGrid/PokemonsGrid'
 
+
 export const Pokemons = () => {
   const [pokemonName, setPokemonName] = useState('')
   const [pokemonInfo, setPokemonInfo] = useState({
@@ -44,12 +45,15 @@ export const Pokemons = () => {
     }
   }
 
+
   return (
     <>
       <div className='pokemonLogo'>
+
         <button className="logo">
           <img src={Logo} />
         </button>
+
 
         <div className='search'>
           <input
@@ -77,7 +81,6 @@ export const Pokemons = () => {
         :
         (<PokemonsGrid />)
       }
-
     </>
   )
 }
